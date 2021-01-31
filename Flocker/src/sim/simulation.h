@@ -1,5 +1,6 @@
 #pragma once
 
+// Default simulation values.
 #define FLOCK_DEF_LOCAl_RAD   30
 #define FLOCK_DEF_COHESION    1.0f
 #define FLOCK_DEF_SEPARATION  1.0f
@@ -37,15 +38,19 @@ private:
 
     // The cohesion behaviour is the desire for agents to steer to move 
     // towards the crowd. The value must be in the range [0, 1] inclusive.
-    float  m_Cohesion; 
+    float  m_Kc; 
 
     // The separation behaviour is the desire for agents to steer away from a 
     // crowd. The value must be in the range [0, 1] inclusive.
-    float  m_Separation;
+    float  m_Ks;
 
     // The alignment behaviuour is the desire for agents to steer in the same
     // direction of the flock. The value must be in the range [0, 1] inclusive.
-    float  m_Alignment;
+    float  m_Ka;
+
+    void SimulateCohesion(const sf::Vector2f& avgPos);
+    void SimulateSeparation(const sf::Vector2f& avgPos);
+    void SimulateAlignment(const sf::Vector2f& avgPos);
 };
 
 }
