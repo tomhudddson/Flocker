@@ -20,10 +20,16 @@ public:
     Simulation(const unsigned int simWidth, const unsigned int simHeight);
     ~Simulation();
 
-    void Update(const float dt);
+    void Update(const float dt, 
+                const float kcSliderVal,
+                const float ksSliderVal,
+                const float kaSliderVal);
     void Render(sf::RenderWindow& window);
 
     void SpawnAgents(const int n);
+
+    unsigned int GetWidth() { return m_SimWidth; }
+    unsigned int GetHeight() { return m_SimHeight; }
 
 private:    
     unsigned int  m_SimWidth;

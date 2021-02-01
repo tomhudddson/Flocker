@@ -25,8 +25,25 @@ static float Dist(const sf::Vector2f& p1, const sf::Vector2f& p2)
                      ((p1.y - p2.y) * (p1.y - p2.y)));
 }
 
-void Simulation::Update(const float dt)
+static float ValidateMultiplier(const float multiplier)
 {
+    if (multiplier < 0.f)
+        return 0.f;
+    else if (multiplier > 1.f)
+        return 1.f;
+    else
+        return multiplier;
+}
+
+void Simulation::Update(const float dt,
+                          const float kcSliderVal,
+                          const float ksSliderVal,
+                          const float kaSliderVal)
+{
+    m_Kc = ValidateMultiplier(kcSliderVal);
+    m_Ks = ValidateMultiplier(ksSliderVal);
+    m_Ka = ValidateMultiplier(kaSliderVal);
+
     float xSum = 0;
     float ySum = 0;
     int localAgents = 0;
@@ -91,12 +108,14 @@ void Simulation::SpawnAgents(const int n)
 
 void Simulation::SimulateCohesion(const sf::Vector2f& avgPos)
 {
-    
+    // Calculate the angle 
 }
+
 void Simulation::SimulateSeparation(const sf::Vector2f& avgPos)
 {
 
 }
+
 void Simulation::SimulateAlignment(const sf::Vector2f& avgPos)
 {
 

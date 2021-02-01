@@ -1,8 +1,10 @@
 #include "Application.h"
 
-int main()
+#include <Windows.h>
+
+int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR pCmdLine, int nCmdShow)
 {
-    flock::Application app("Flocker", 1366, 768);
+    flock::Application app("Flocker", 1366, 768, nCmdShow);
     app.Run();
 
     return 0;

@@ -13,25 +13,11 @@ Agent::Agent(const sf::Vector2f& midpoint, const float base, const float height,
 {
 }
 
-static float ValidateMultiplier(float& multiplier) 
-{
-    if (multiplier < 0.f) 
-        return 0.f;
-    else if (multiplier > 1.f)
-        return 1.f;
-    else
-        return multiplier;
-}
-
 void Agent::Update(float dt, 
                    const unsigned int simWidth, const unsigned int simHeight,
                    const sf::Vector2f& localAgentsAvgPos,
                    float kc, float ks, float ka)
 {
-    ValidateMultiplier(kc);
-    ValidateMultiplier(ks);
-    ValidateMultiplier(ka);
-
     this->Move(simWidth, simHeight);
     m_Body.Move(m_Speed);
     m_Body.Update(dt);

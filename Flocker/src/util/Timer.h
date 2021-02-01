@@ -10,6 +10,9 @@ typedef long long timerCount_t;
 class Timer
 {
 public:
+    // Default 
+    Timer() {  }
+
     inline static timerCount_t GetMilliSeconds()
     {
         using namespace std::chrono;
