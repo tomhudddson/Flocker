@@ -89,6 +89,39 @@ void Simulation::SpawnAgents(const int n)
     }
 }
 
+void Simulation::ShowAgentsLocalRadius(const bool show)
+{
+    for (auto& agent : m_Agents)
+    {
+        agent.ShowLocalRadius(show);
+    }
+}
+
+static float ValidateMultiplier(const float multiplier)
+{
+    if (multiplier < 0.f)
+        return 0.f;
+    else if (multiplier > 1.f)
+        return 1.f;
+    else
+        return multiplier;
+}
+
+void Simulation::IncrementCohesionMultiplier(const float increment)
+{
+    m_Kc = ValidateMultiplier(m_Kc += increment);
+}
+
+void Simulation::IncrementSeparationMultiplier(const float increment)
+{
+    m_Ks = ValidateMultiplier(m_Ks += increment);
+}
+
+void Simulation::IncrementAlignmentMultiplier(const float increment)
+{
+    m_Ka = ValidateMultiplier(m_Ka += increment);
+}
+
 void Simulation::SimulateCohesion(const sf::Vector2f& avgPos)
 {
     

@@ -7,6 +7,7 @@ namespace flock
 
 Agent::Agent(const sf::Vector2f& midpoint, const float base, const float height, const float angle)
     : m_LocalRadius(0.0f),
+    m_ShowLocalRadius(false),
     m_Speed(0.0f),
     m_Body(midpoint, base, height, angle, sf::Color::Red),
     m_RadiusCircle(0.0f, 0.0f, 0.0f)
@@ -41,7 +42,8 @@ void Agent::Update(float dt,
 
 void Agent::Render(sf::RenderWindow& window)
 {
-    m_RadiusCircle.Render(window);
+    if (m_ShowLocalRadius)
+        m_RadiusCircle.Render(window);
     m_Body.Render(window);
 }
 

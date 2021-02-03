@@ -28,6 +28,8 @@ private:
     void Update();
     void Render();
 
+    void HandleKeyPress();
+
     void UpdateTitle();
 };
 

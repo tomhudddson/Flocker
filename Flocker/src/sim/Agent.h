@@ -29,11 +29,16 @@ public:
     {
         m_RadiusCircle.SetFillColor(color);
     }
+    inline void ShowLocalRadius(const bool show) 
+    {
+        m_ShowLocalRadius = show;
+    }
 
     inline sf::Vector2f GetMidpoint() { return m_Body.GetMidpoint(); }
 
 private:
     float  m_LocalRadius;
+    bool   m_ShowLocalRadius;
     float  m_Speed;
 
     Triangle  m_Body;

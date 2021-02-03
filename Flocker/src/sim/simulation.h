@@ -2,9 +2,11 @@
 
 // Default simulation values.
 #define FLOCK_DEF_LOCAl_RAD   30
-#define FLOCK_DEF_COHESION    1.0f
-#define FLOCK_DEF_SEPARATION  1.0f
-#define FLOCK_DEF_ALIGNMENT   1.0f
+#define FLOCK_DEF_COHESION    0.0f
+#define FLOCK_DEF_SEPARATION  0.0f
+#define FLOCK_DEF_ALIGNMENT   0.0f
+
+#define FLOCK_MULTIPLIER_INCREMENT 0.05f
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -13,6 +15,13 @@
 
 namespace flock
 {
+
+enum class Multiplier
+{
+    COHESION,
+    SEPARATION,
+    ALIGNMENT
+};
 
 class Simulation
 {
@@ -24,6 +33,14 @@ public:
     void Render(sf::RenderWindow& window);
 
     void SpawnAgents(const int n);
+    void ShowAgentsLocalRadius(const bool render);
+
+    void IncrementCohesionMultiplier(float increment);
+    void IncrementSeparationMultiplier(float increment);
+    void IncrementAlignmentMultiplier(float increment);
+    inline float GetCohesionMultipler() { return m_Kc; }
+    inline float GetSeparationMultipler() { return m_Ks; }
+    inline float GetAlignmentMultiplier() { return m_Ka; }
 
 private:    
     unsigned int  m_SimWidth;
